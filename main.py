@@ -139,26 +139,14 @@ class App:
 
     def run(self):
         while True:
-           
-            print("\nAvailable commands:")
-            print("  ls - List all books")
-            print("  new - Add a new book")
-            print("  del - Delete a book")
-            print("  get - Get details of a book")
-            print("  save - Save data to disk")
-            print("  load - Load data from disk")
-            print("  exit - Exit the application")
-
-            command = input("\nEnter a command: ").strip().lower()
-
-            if command == "exit":
-                print("Exiting the application. Goodbye!")
+            action = input('Action? (ls, new, del, get, save, load, quit): ')
+            if action == 'quit':
                 break
-
-            if command in self.__actions:
-                try:
-                    self.__actions[command]() 
-                except Exception as e:
-                    print(f"An error occurred: {e}")
+            if action in self.__actions:
+                self.__actions[action]()
             else:
-                print("Invalid command. Please try again.")
+                print('Invalid action. Please try again.')
+
+if __name__ == '__main__':
+    app = App()
+    app.run()
